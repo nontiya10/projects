@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <form action="/input" METHOD="post">
+            <div class="form-group">
+                <label>ชื่อสินค้า </label>
+                <input type="text" class="form-control"  placeholder="กรุณากรอกข้อมูลชื่อสินค้า" name="name">
+            </div>
+            <div class="form-group">
+                <label>รหัสสินค้า</label>
+                <input type="text" class="form-control"  placeholder="กรุณากรอกข้อมูลรหัสสินค้า" name="id">
+            </div>
+            <div class="form-group">
+                <label>หมวดหมู่สินค้า</label>
+                <select class="form-control input-sm" name="sex">
+                    <option value="Male">นาฬิกาผู้ชาย</option>
+                    <option value="Female">นาฬิกาผู้หญิง</option>
+                </select>
+            </div>
+            <label>รายละเอียดสินค้า</label><br>
+            <textarea name="comment" rows="10" cols="60"></textarea><br><br>
+            <div class="form-group">
+                <label>ราคาสินค้า</label>
+                <input type="text" class="form-control"  placeholder="กรุณากรอกข้อมูลราคาสินค้า" name="price">
+            </div>
+            <button type="submit" class="btn btn-primary">บันทึก</button>
+            <button type="reset" class="btn btn-danger">ยกเลิก</button>
+        </form>
+    </body>
+</html>

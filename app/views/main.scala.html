@@ -1,0 +1,68 @@
+@(contents: Html)
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="assets/stylesheets/bootstrap3/css/bootstrap.css">
+        <!--styleปุ่มtop-->
+        <style>
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            border: none;
+            background-color: red;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        </style>
+            <!--stop styleปุ่มtop-->
+    </head>
+    <body>
+<div class="container">
+    <div class="row">
+            <!--ช่องรูป-->
+        <div class="col-md-12">
+           @Photo() <br><br>
+        </div>
+    </div>
+    <div class="row">
+        <!--ช่องเมนู-->
+        <div class="col-md-12">
+            @manu() <br>
+        </div>
+    </div>
+    <div class="row">
+            <!--สินค้า-->
+        <div class="col-md-12">
+        @contents
+            <br><br>
+        </div>
+    </div>
+
+</div>
+
+            <!--ปุ่มtop-->
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        <script>
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function() {scrollFunction()};
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        document.getElementById("myBtn").style.display = "block";
+                    } else {
+                        document.getElementById("myBtn").style.display = "none";
+                    }
+                }
+
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+        </script>
+            <!--stopปุ่มtop-->
+    </body>
+</html>

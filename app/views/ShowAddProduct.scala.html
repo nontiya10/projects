@@ -1,0 +1,32 @@
+@(showProduct:AddProduct)
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>Product</h2>
+            <p>ข้อมูลสินค้าที่ทำการบันทึก</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ชื่อสิค้า</th>
+                        <th>รหัสสินค้า</th>
+                        <th>หมวดหมู่สินค้า</th>
+                        <th>รายละเอียด</th>
+                        <th>ราคาสินค้า</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@showProduct.getName</td>
+                        <td>@showProduct.getId</td>
+                        <td>@showProduct.getSex</td>
+                        <td>@showProduct.getComment</td>
+                        <td>@showProduct.getPrice</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
