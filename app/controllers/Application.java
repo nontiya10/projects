@@ -33,9 +33,6 @@ public class Application extends Controller {
     public static Result Product1() {
         return Main(Product1.render());
     }
-    public static Result  Product2 () {
-        return Main(Product2.render());
-    }
     public static  Result ShowAddProduct(){
         DynamicForm inputproduct = Form.form().bindFromRequest();
         String name,id,comment,sex;
