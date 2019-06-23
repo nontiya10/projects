@@ -35,7 +35,16 @@
 
                                 <td>@dataTeam.getId</td>
                                 <td>@dataTeam.getDate</td>
-                                <td>@dataTeam.getTime</td>
+                                <td>
+                                    @if(dataTeam.getTime=="1"){
+                                        ช่วงเช้า
+                                    }else{
+                                        @if(dataTeam.getTime=="2"){
+                                            ช่วงบ่าย
+                                        }else{
+                                            เต็มวัน
+                                        }
+                                    }</td>
                                 <td>@dataTeam.getBook.getBook_Amount</td>
                                 <td class="text-center"><a href="/detailTeam/@dataTeam"><i class="material-icons" style="color:darkblue">event_note
                                 </i></a></td>

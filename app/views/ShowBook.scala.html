@@ -38,7 +38,17 @@
                                     <td>@databook.getCustomer.getCus_Name</td>
                                     <td>@databook.getBook_date</td>
                                     <td>@databook.getBook_dates</td>
-                                    <td>@databook.getBook_time</td>
+                                    <td>
+                                    @if(databook.getBook_time=="1"){
+                                        ช่วงเช้า
+                                    }else{
+                                        @if(databook.getBook_time=="2"){
+                                            ช่วงบ่าย
+                                        }else{
+                                            เต็มวัน
+                                        }
+                                    }
+                                    </td>
                                     <td>@databook.getBook_Amount</td>
                                     <td>@databook.getUser.getMem_name</td>
                                     @if(databook.getBook_Status == null) {
