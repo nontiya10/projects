@@ -1,0 +1,63 @@
+@(userList : List[User])
+    @if(flash.containsKey("error")){
+        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("error")</div>
+    }
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                        /ข้อมูลสมาชิก</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="text-right">
+                            <a href="/formAdduser" class="btn btn-primary" >เพิ่มข้อมูล</a>
+                        </div>
+                        <table class="table table-striped custab">
+                            <div class="text-center">
+                                <tr>
+                                    <th>ชื่อสมาชิก</th>
+                                    <th>รหัสประจำตัวประชาชน</th>
+                                    <th>เบอร์โทรศัพท์</th>
+                                    <th>อีเมล</th>
+                                    <th>ที่อยู่</th>
+                                    <th>สถานะ</th>
+                                    <th>เเก้ไข</th>
+                                    <th>ลบ</th>
+
+                                </tr>
+                            </div>
+                                @for(datauser <-userList ) {
+                                    <tr>
+                                        <td>@datauser.getMem_name</td>
+                                        <td>@datauser.getMem_id</td>
+                                        <td>@datauser.getMem_tel</td>
+                                        <td>@datauser.getMem_email</td>
+                                        <td>@datauser.getMem_add</td>
+                                        @if(datauser.getStatus =="admin"){
+                                            <td>ผู้ดูเเลระบบ</td>
+                                        }else{
+                                            <td>สมาชิก</td>
+                                            }
+
+
+                                        <td class="text-center"><a href="/edituser/@datauser.getUsername"><i class="material-icons" style="color:darkblue" onclick="return confirm('ต้องการแก้ไขข้อมูลผู้ใช้ใช่หรือไม่')">
+create
+                                        </i></a></td>
+                                        <td class="text-center"><a href="/deleteuser/@datauser.getUsername" class="oi oi-trash" onclick="return confirm('คุณต้องการที่จะลบข้อมูลศูนย์นี้ใข่หรือไม่ ? ')"><i class="material-icons " style="color: #9f191f">
+    delete
+                                        </i></a></td>
+
+                                }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

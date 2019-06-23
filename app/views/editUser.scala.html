@@ -1,0 +1,31 @@
+@(myuser : Form[User])
+@import helper._;
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                        /เเก้ไขข้อมูลสมาชิก</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                    @helper.form(action = routes.Application.updateuser(), 'class -> "form-contorl",'enctype -> "multipart/form-data"){
+                        @inputText(myuser("id"),'_label ->"รหัสสมาชิก",'size -> "50",'readonly->"readonly", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control")
+                        @inputText(myuser("Mem_name"),'_label ->"ชื่อสมาชิก",'size -> "50", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control")
+                        @inputText(myuser("Mem_id"),'_label ->"เลขประจำตัวประชาชน",'type->"number",'size -> "50", 'maxlength ->"13", 'requitred -> "requitred",'class->"form-control")
+                        @inputText(myuser("Mem_tel"),'_label ->"เบอร์โทรศัพท์",'type->"number",'size -> "50", 'maxlength ->"10", 'requitred -> "requitred",'class->"form-control")
+                        @inputText(myuser("Mem_email"),'_label ->"อีเมล",'size -> "50", 'maxlength ->"100", 'requitred -> "requitred",'class ->"form-control")
+                        @textarea(myuser("Mem_add"),'_label ->"ที่อยู่",'cols -> "50",'rows->"4", 'requitred -> "requitred",'class ->"form-control")
+                        @inputRadioGroup(myuser("status"),options =Seq("admin" ->"ผู้ดูเเลระบบ","user"->"สมาชิก"),'_label -> "status")
+                        <input type="submit" value="บันทึก" class="btn btn-success" onclick="return confirm('บันทึกการเเก้ไขข้อมูล')">
+                        <a href="/user" class="btn btn-danger">ยกเลิก</a>
+                    }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,178 @@
+@(myuBooklist: List[Book], myuserlist: List[User], dataUsersBook: Book, cusTeam: List[CusTeam], status: String)
+@import java.math.BigInteger; var cat = 0;
+@import java.lang.String; var sss = "/addTeam"; var no = 1;
+@import helper._;
+
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                        /เพิ่มข้อมูลจัดทีมวิทยากร</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form action="/loadBook" method="post">
+                                    <select class="form-control" name="book" id="list" onchange="this.form.submit()">
+                                    @if(dataUsersBook == null) {
+                                        @sss=
+                                        <option value="0">----รหัสการจอง----</option>
+                                        @for(us <- myuBooklist) {
+
+                                            <option value="@us.getBook_id"> @us.getBook_id</option>
+                                        }
+                                    } else {
+                                        @for(us <- myuBooklist) {
+                                            @if(dataUsersBook.getBook_id == us.getBook_id) {
+                                                <option value="@us.getBook_id" selected> @us.getBook_id</option>
+                                            } else {
+                                                <option value="@us.getBook_id"> @us.getBook_id</option>
+                                            }
+                                        }
+
+
+                                    }
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="row">
+                                </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <lable name="Sch_Timein">ชื่อลูกค้า</lable> <br>
+                                @if(dataUsersBook == null) {
+                                    <input type="text" value="" name="name" class="form-control" readonly="readonly">
+                                } else {
+                                    <input type="text" value="@dataUsersBook.getCustomer.getCus_Name" name="amount" class="form-control" readonly="readonly">
+                                    }
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-3">
+                            @if(dataUsersBook == null) {
+                                <lable name=""></lable>
+                                <lable name="Sch_Timein">วันที่เข้าดูงาน</lable> <br>
+                                <input type="text" value="" name="Sch_Timein" class="form-control" readonly="readonly">
+                            </div>
+                            <div class="col-md-3">
+                                <lable name="Sch_Timeout">เวลา</lable><br>
+                                <input type="text" value="" name="Sch_Timeout" class="form-control" readonly="readonly">
+                            </div>
+                            }else{
+                            <lable name="Sch_Timein">วันที่เข้าดูงาน</lable> <br>
+                            <input type="text" value="@dataUsersBook.getBook_dates" name="Sch_Timein" class="form-control" readonly="readonly">
+                        </div>
+                        <div class="col-md-3">
+                            <lable name="Sch_Timeout">เวลา</lable><br>
+                            <input type="text" value="@dataUsersBook.getBook_time" name="Sch_Timeout" class="form-control" readonly="readonly">
+                        </div>
+                        }
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br>
+
+                    ชื่อสมาชิก<br>
+                    <form action="/addTeam" method="post">
+                        @if(dataUsersBook != null){
+                            <input type="hidden" name="book" value="@dataUsersBook.getBook_id">
+                        }
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select class="form-control" name="username" id="list">
+                                    <option value="0">----เลือกสมาชิก----</option>
+                                @for(us <- myuserlist) {
+                                    <option value="@us.getUsername"> @us.getMem_name</option>
+                                }
+                                </select>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <lable name="position">ตำเเหน่ง</lable>
+                                <select class="form-control" name="position" id="list">
+                                    <option value="0">----เลือกตำเเหน่ง----</option>
+                                    <option value="วิทยากร">วิทยากร</option>
+                                    <option value="ฝ่ายจัดเตรียมอาหาร">ฝ่ายจัดเตรียมอาหาร</option>
+                                    <option value="ฝ่ายจัดเตรียมเอกสาร">ฝ่ายจัดเตรียมเอกสาร</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div><br>
+
+
+                <input type="submit" value="บันทึก" class="btn btn-success" onclick="return confirm('บันทึกข้อมูล')">
+                <a href="/formSchedule " class="btn btn-danger">ยกเลิก</a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+        </div>
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class=  "panel-title">รายการจัดทีมวิทยากร</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="text-right">
+                        <a href="/saveCusTeam" class="btn btn-success">ยืนยัน</a>
+                    </div>
+                    @if(flash.containsKey("nodata")) {
+                        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("nodata")</div>
+                    }
+
+                    <table class="table table-striped custab">
+                        <tr>
+                            <td>ลำดับที่</td>
+                            <td>วันที่เข้าดูงาน</td>
+                            <td>เวลา</td>
+                            <td>ชื่อสมาชิก</td>
+                            <td>ตำเเหน่ง</td>
+                            <td>ลบ</td>
+                        </tr>
+                        @if(cusTeam == null) {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
+                            </tr>
+                        } else {
+                            @for(data <- cusTeam) {
+                                <tr>
+                                    <td>@no</td>
+                                    <td>@data.getBook.getBook_dates</td>
+                                    <td>@data.getBook.getBook_time</td>
+                                    <td>@data.getUser.getMem_name</td>
+                                    <td>@data.getTeam_Posit</td>
+                                    <td class="text-center"><a href="/deleteCusTeam/@data.getBook.getBook_id" class="oi oi-trash" onclick="return confirm('คุณต้องการที่จะลบข้อมูลศูนย์นี้ใข่หรือไม่ ? ')"><i class="material-icons " style="color : #9f191f">
+    delete
+                                    </i>
+                                    </a>
+                                    </td>
+                                </tr>
+                                @(no=no+1)
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

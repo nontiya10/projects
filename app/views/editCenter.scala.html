@@ -1,0 +1,31 @@
+@(mycenter : Form[Center])
+@import helper._;
+    <div class=" panel-default">
+        <div class="row">
+            <div class="col-xs-3">
+        </div>
+            <div class="col-md-12 col-xs-9">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                            /เเก้ไขข้อมูลศูนย์การเรียนรู้เศรษฐกิจพอเพียง</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+
+                        @helper.form(action = routes.Application.updateCenter(), 'class -> "form-contorl",'enctype -> "multipart/form-data"){
+                            @inputText(mycenter("Cen_Name"),'_label ->"ชื่อศูนย์ฯ",'size -> "50", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control",'placeholder->"กรุณากรอกข้อมูลชื่อศูนย์การเรียนรู้เศรษฐกิจพอเพียง")
+                            @inputText(mycenter("Cen_Tel"),'_label ->"เบอร์โทรศัพท์",'type->"number",'size -> "10", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control",'placeholder->"กรุณากรอกข้อมูลเบอร์โทรศัพทศูนย์การเรียนรู้เศรษฐกิจพอเพียง")
+                            @inputText(mycenter("Cen_Email"),'_label ->"E-mail",'size -> "50", 'maxlength ->"100", 'requitred -> "requitred",'class ->"form-control",'placeholder->"กรุณากรอกข้อมูลอีเมลศูนย์การเรียนรู้เศรษฐกิจพอเพียง")
+                            @textarea(mycenter("Cen_Address"),'_label ->"ที่อยู่",'cols -> "50",'rows->"4", 'requitred -> "requitred",'class ->"form-control",'placeholder->"กรุณากรอกข้อมูลที่อยู่ศูนย์การเรียนรู้เศรษฐกิจพอเพียง")
+                            @textarea(mycenter("Cen_Price"),'_label ->"ราคาดูงาน/คน",'cols ->"50",'row ->"4",'requitred -> "requitred",'class ->"form-control",'placeholder->"กรุณากรอกข้อมูลราคาศึกษาดูงาน" )
+                            @inputFile(mycenter("Cen_Logo"),'_label ->"โลโก้",'cols ->"50")
+                            <input type="submit" value="บันทึก" class="btn btn-success" onclick="return confirm('บันทึกการเเก้ไขข้อมูล')">
+                            <a href="/center" class="btn btn-danger">ยกเลิก</a>
+                        }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

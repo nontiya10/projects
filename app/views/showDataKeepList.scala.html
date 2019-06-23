@@ -1,0 +1,48 @@
+@(keepList:List[KeepList])
+    @import java.math.BigInteger;  var no = 1;
+
+
+
+@if(flash.containsKey("error")){
+    <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("error")</div>
+}
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">รายการเก็บผลผลิต
+                    </a></h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+
+                        <table class="table table-striped custab">
+                            <div class="text-center">
+                                <tr>
+
+                                    <th>ลำดับที่</th>
+                                    <th>ชื่อผลผลิต</th>
+                                    <th>จำนวน</th>
+                                    <th>หน่วยนับ</th>
+
+                                </tr>
+                            </div>
+                            @for(datauser <-keepList ) {
+                                <tr>
+                                    <td>@no</td>
+                                    <td>@datauser.getProduct.getPro_Name</td>
+                                    <td>@datauser.getAmount</td>
+                                    <td>@datauser.getProduct.getPro_Unit</td>
+                                    @(no=no+1)
+                                    }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

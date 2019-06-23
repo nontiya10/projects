@@ -1,0 +1,29 @@
+@(myproduct : Form[Product])
+@import helper._;
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                        /เเก้ไขข้อมูลผลผลิต</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                    @helper.form(action = routes.Application.updateProduct(), 'class -> "form-contorl",'enctype -> "multipart/form-data"){
+                        @inputText(myproduct ("Pro_Id"),'_label ->"รหัสสินค้า",'size -> "50", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control",'placeholder->"กรุณากรอกข้อมูลรหัสผลผลิต",'readonly->"readonly")
+                        @inputText(myproduct ("Pro_Name"),'_label ->"ชื่อสินค้า",'size -> "50", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control",'placeholder->"กรุณากรอกข้อมูลชื่อผลผลิต")
+                        @select(myproduct("booktype"), options = Seq("กิโลกรัม" -> "กิโลกรัม","แผง" -> "แผง","ต้น" -> "ต้น"),'_label ->"หน่วยนับ", 'requitred -> "requitred",'class->"form-control")
+                        @inputText(myproduct ("pro_total"),'_label ->"เรทราคาขาย",'size -> "50", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control",'placeholder->"กรุณากรอกข้อมูลชื่อผลผลิต")
+
+                        <input type="submit" value="บันทึก" class="btn btn-success" onclick="return confirm('บันทึกการเเก้ไขข้อมูล')">
+                        <a href="/product " class="btn btn-danger">ยกเลิก</a>
+                    }
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

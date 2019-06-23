@@ -1,68 +1,47 @@
-@(contents: Html)
+@(content: Html)
 <html>
     <head>
-        <link type="text/css" rel="stylesheet" href="assets/stylesheets/bootstrap3/css/bootstrap.css">
-        <!--styleปุ่มtop-->
-        <style>
+        <title>ระบบบริหารจัดการศูนย์การเรียนรู้เศรษฐกิจพอเพียง</title>
+        <link type="text/css" rel="stylesheet" href="../assets/stylesheets/bootstrap3/css/bootstrap.css">
+        <link rel="stylesheet" href="../assets/stylesheets/bootstrap3/css/bootstrap.css">
+        <link rel="stylesheet" href="../assets/stylesheets/bootstrap3/js/bootstrap.js">
+        <link rel="stylesheet" href="../assets/stylesheets/main.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+        @*navba*@
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+            <!------ Include the above in your HEAD tag ---------->
+        @*stopnavba*@
+        @*menu*@
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+            <!------ Include the above in your HEAD tag ---------->
+        @*stopmenu*@
 
-        #myBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            border: none;
-            background-color: red;
-            color: white;
-            padding: 15px;
-            border-radius: 4px;
-        }
-        </style>
-            <!--stop styleปุ่มtop-->
+        @*title*@
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        @*stoptitle*@
+        @*font*@
+        <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">
+        @*stopfont*@
     </head>
-    <body>
-<div class="container">
-    <div class="row">
-            <!--ช่องรูป-->
-        <div class="col-md-12">
-           @Photo() <br><br>
+    <body style=" font-family: 'Bai Jamjuree', sans-serif;">
+        <div class="container-fluid">
+            <div class="row">@navba()</div>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+
+                <div class="col-md-2" >@sidebar2()</div>
+                <div class="col-md-10">
+                    @content
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <!--ช่องเมนู-->
-        <div class="col-md-12">
-            @manu() <br>
-        </div>
-    </div>
-    <div class="row">
-            <!--สินค้า-->
-        <div class="col-md-12">
-        @contents
-            <br><br>
-        </div>
-    </div>
-
-</div>
-
-            <!--ปุ่มtop-->
-        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-        <script>
-                // When the user scrolls down 20px from the top of the document, show the button
-                window.onscroll = function() {scrollFunction()};
-
-                function scrollFunction() {
-                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                        document.getElementById("myBtn").style.display = "block";
-                    } else {
-                        document.getElementById("myBtn").style.display = "none";
-                    }
-                }
-
-                // When the user clicks on the button, scroll to the top of the document
-                function topFunction() {
-                    document.body.scrollTop = 0;
-                    document.documentElement.scrollTop = 0;
-                }
-        </script>
-            <!--stopปุ่มtop-->
     </body>
 </html>

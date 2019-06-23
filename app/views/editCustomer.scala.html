@@ -1,0 +1,29 @@
+@(mycustomer : Form[Customer])
+@import helper._;
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panelheading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                        /เเก้ไขข้อมูลลูกค้า</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                    @helper.form(action = routes.Application.updateCustomer(), 'class -> "form-contorl",'enctype -> "multipart/form-data"){
+                        @inputText(mycustomer("Cus_Name"),'_label ->"ชื่อลูกค้า",'size -> "50", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control",'placeholder->"กรุณากรอกข้อมูลชื่อลูกค้า")
+                        @inputText(mycustomer("Cus_Tel"),'_label ->"เบอร์โทรศัพท์",'type->"number",'size -> "50", 'maxlength ->"10", 'requitred -> "requitred",'class->"form-control",'placeholder->"กรุณากรอกข้อมูลเบอร์โทรศัพท์ลูกค้า")
+                        @inputText(mycustomer("Cus_Email"),'_label ->"อีเมล",'size -> "50", 'maxlength ->"100", 'requitred -> "requitred",'class ->"form-control",'placeholder->"กรุณากรอกข้อมูลอีเมลลูกค้า")
+                        @textarea(mycustomer("Cus_Address"),'_label ->"ที่อยู่",'cols -> "50",'rows->"4", 'requitred -> "requitred",'class ->"form-control",'placeholder->"กรุณากรอกข้อมูลที่อยู่ลูกค้า")
+                        <input type="submit" value="บันทึก" class="btn btn-success" onclick="return confirm('บันทึกการแก้ไขข้อมูล')">
+                        <a href="/customer " class="btn btn-danger">ยกเลิก</a>
+
+                    }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,11 +4,126 @@
 
 # Home page
 
-GET     /                           controllers.Application.index()
-GET     /pro1                      controllers.Application.Product1()
-GET     /Pro                         controllers.Application.Products()
-GET     /Form                          controllers.Application.MyFrom()
-POST    /input                      controllers.Application.ShowAddProduct()
+GET         /index                        controllers.Application.index()
+GET         /                             controllers.Application.login()
+POST        /datalogin                    controllers.Application.userlogin()
+GET         /register                     controllers.Application.registerform()
+POST        /userlogin                    controllers.Application.Adduser()
+GET         /logout                       controllers.Application.Logout()
+
+
+#Center
+GET         /center                       controllers.Application.centerList()
+GET         /formAddCenter                controllers.Application.formAddCenter()
+POST        /insertCenter                 controllers.Application.insertCenter()
+GET         /editCenter/:id               controllers.Application.editCenter(id : String)
+POST        /updateCenter                 controllers.Application.updateCenter()
+GET         /deleteCenter/:id             controllers.Application.deleteCenter(id : String)
+
+#User
+GET         /user                         controllers.Application.userList()
+GET         /formAdduser                  controllers.Application.formAdduser()
+POST        /insertuser                   controllers.Application.insertuser()
+GET         /edituser/:id                 controllers.Application.edituser(id : String)
+POST        /updateuser                   controllers.Application.updateuser()
+GET         /deleteuser/:id               controllers.Application.deleteuser(id : String)
+
+#Customer
+GET         /customer                     controllers.Application.customerList()
+GET         /formAddCustomer              controllers.Application.formAddCustomer()
+POST        /insertCustomer               controllers.Application.insertCustomer()
+GET         /editCustomer/:id             controllers.Application.editCustomer(id : String)
+POST        /updateCustomer               controllers.Application.updateCustomer()
+GET         /deleteCustomer/:id           controllers.Application.deleteCustomer(id : String)
+
+#Product
+GET         /product                      controllers.Application.productList()
+GET         /formAddProduct               controllers.Application.formAddProduct()
+POST        /insertProduct                controllers.Application.insertProduct()
+GET         /editProduct/:id              controllers.Application.editProduct(id : String)
+POST        /updateProduct                controllers.Application.updateProduct()
+GET         /deleteProduct/:id            controllers.Application.deleteProduct(id : String)
+
+#Work
+GET         /work                         controllers.Application.workList()
+GET         /timeInWork                   controllers.Application.timeInWork()
+GET         /timeOutWirk/:id              controllers.Application.timeOutWirk(id : String)
+
+#Book
+GET         /listBook                     controllers.Application.bookList()
+GET         /formAddBook                  controllers.Application.formAddBook()
+POST        /insertBook                   controllers.Application.insertBook()
+GET         /editBook/:id                 controllers.Application.editBook(id : String)
+GET         /deletebook/:id               controllers.Application.deleteBook(id : String)
+
+
+
+#testList
+
+GET         /formSchedule                 controllers.test.formSchedule()
+POST        /test666                      controllers.test.AddSchedule()
+GET         /saveSchedule                 controllers.test.saveSchedule()
+GET         /deleteCusSchedule/:id        controllers.test.deleteCusSchedule(id : String)
+
+
+GET         /dataAll                      controllers.Application.dataAll()
+POST        /searchDate                   controllers.Application.searchDate()
+GET         /detailSch/:id                controllers.Application.detailSch(id : String)
+
+
+#Team
+GET         /formInsertTeam               controllers.Application.formInsertTeam()
+GET         /dataTeam                     controllers.Application.dataTeam()
+#GET         /dataTeamList/:id           controllers.Application.dataTeamList(id : String)
+POST        /loadBook                     controllers.Application.loadDate()
+POST        /addTeam                      controllers.Application.Add()
+GET         /deleteCusTeam/:id            controllers.Application.deleteCusTeam(id : String)
+GET         /saveCusTeam                  controllers.Application.saveCusTeam
+GET         /detailTeam/:id               controllers.Application.detailTeam(id : String)
+
+
+#payment
+GET         /payList                      controllers.Application.payList()
+GET         /formInsertpay                controllers.Application.formInsertpay()
+POST        /loadDatepayment              controllers.Application.loadDatepayment()
+POST        /savePayment                  controllers.Application.savePayment()
+
+
+#Keep
+GET         /formInsertKeep               controllers.Application.formInsertKeep()
+POST        /loadkeep                     controllers.Application.loadkeep()
+GET         /saveKeep                     controllers.Application.saveKeep()
+GET         /deleteKeepAdd/:id            controllers.Application.deleteKeepAdd(id : String)
+POST        /addkeep                      controllers.Application.AddkeepProduct()
+GET         /dataKeepList                 controllers.Application.dataKeepList()
+GET         /detailkeep/:id               controllers.Application.detailkeep(id : String)
+
+
+#sale
+GET        /formSale                        controllers.Application.formInsertSale()
+POST       /addSale                         controllers.Application.AddSaleProduct()
+POST       /loadDateSale                    controllers.Application.loadDateSale()
+GET        /save                            controllers.Application.savesale()
+GET        /deleteSaleAdd/:id               controllers.Application.deleteSaleAdd(id : String)
+GET        /dataSaleList                    controllers.Application.dataSaleList()
+GET        /detailsale/:id                  controllers.Application.detailsale(id : String)
+
+#dividend
+GET        /inputdiv                       controllers.Application.diviall()
+POST        /loadDataSale                   controllers.Application.loadDataSale()
+#report
+GET        /formRePro                       controllers.Application.reportProduct()
+GET        /reportSaveWork                  controllers.Application.reportSaveWork()
+GET        /reportSchedule/:id             controllers.test.list(id : String)
+GET        /dataScheduleList                controllers.test.dataScheduleList()
+GET        /reportbook                      controllers.Application.reportbook()
+GET        /reportteam/:id                   controllers.Application.list(id : String)
+GET        /reportteamList                     controllers.Application.reportteam()
+GET        /reportkeep/:id                   controllers.Application.keepp(id : String)
+GET        /reportshowkeep                   controllers.Application.reportkeep()
+GET        /reportsale/:id                   controllers.Application.resale(id : String)
+GET        /reportshowsale                controllers.Application.reportsale()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file                 controllers.Assets.at(path="/public", file)
+

@@ -1,0 +1,36 @@
+@(paymentList : List[Payment])
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">รายการการชำระเงิน </h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped custab">
+                        <tr>
+                            <th>รหัสการชำระเงิน</th>
+                            <th>วันที่ชำระเงิน</th>
+                            <th>ชื่อลูกค้า</th>
+                            <th>จำนวนคน</th>
+                            <th>ราคา/คน</th>
+                            <th>ราคารวม</th>
+                        </tr>
+                        @for(datapay <- paymentList) {
+                            <tr>
+                                <td>@datapay.getId</td>
+                                <td>@datapay.getPay_Date</td>
+                                <td>@datapay.getTeam.getBook.getCustomer.getCus_Name</td>
+                                <td>@datapay.getTeam.getBook.getBook_Amount</td>
+                                <td>@datapay.getCenter.getCen_Price</td>
+                                <td>@datapay.getPay_Total</td>
+                                }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+@(sale: List[Sale],totalPay : Int ,totalSale: Int, total: Int, expenses: Int, net: Int)
+@import java.math.BigInteger; var cat = 0; var no = 1;
+@import helper._;
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลการปันผล</a></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <form action="/loadDataSale" method="post">
+                        <div class="col-md-4">
+                                <select class="form-control"  name="month" id="list">
+                                    <option value="0">----เลือกเดือนเพื่อปันผล----</option>
+                                    <option value="01">มกราคม</option>
+                                    <option value="02">กุมภาพันธ์</option>
+                                    <option value="03">มีนาคม</option>
+                                    <option value="04">เมษายน </option>
+                                    <option value="05">พฤษภาคม</option>
+                                    <option value="06">มิถุนายน</option>
+                                    <option value="07">กรกฎาคม</option>
+                                    <option value="08">สิงหาคม</option>
+                                    <option value="09">กันยายน</option>
+                                    <option value="10">ตุลาคม </option>
+                                    <option value="11">พฤษจิกายน</option>
+                                    <option value="12">ธันวาคม</option>
+                                </select>
+
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control" name="year">
+                                <option value="0">----เลือกปีเพื่อปันผล----</option>
+                                <option value="2562">2562</option>
+                                <option value="2563">2563</option>
+                                <option value="2564">2564</option>
+                                <option value="2565">2565</option>
+                                <option value="2566">2566</option>
+                                <option value="2567">2567</option>
+                                <option value="2568">2568</option>
+                                <option value="2569">2569</option>
+                                <option value="2570">2570</option>
+                                <option value="2571">2571 </option>
+                                <option value="2572">2572</option>
+                                <option value="2573">2573</option>
+                        </select>
+                        </div>
+                            <div class="col-md-4">
+                                <input type="submit" value="ตกลง" class="btn btn-success">
+                            </div>
+                        </form>
+
+                    </div><br>
+                <div class="row">
+                    <div class="col-md-6">
+                        ยอดเงินรวมการศึกษาดูงาน : <input type="text" value="@totalPay" name="totalPay" class="form-control" readonly="readonly"> <br>
+                        ยอดเงินรวมการขาย : <input type="text" value="@totalSale" name="totalSale" class="form-control" readonly="readonly"> <br>
+                        ยอดเงินรวมทั้งสิน : <input type="text" value="@total" name="total" class="form-control" readonly="readonly"> <br>
+                        หักค่าใช้จ่าย 30 % : <input type="text" value="@expenses" name="expenses" class="form-control" readonly="readonly"> <br>
+                        ยอดเงินสุทธิ : <input type="text" value="@net" name="net" class="form-control" readonly="readonly">
+                    </div>
+                </div><br>
+                    <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="submit" value="บันทึก" class="btn btn-success">
+                            <a href="/inputdiv " class="btn btn-danger">ยกเลิก</a>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    @*<div class=" panel-default">*@
+    @*<div class="row">*@
+    @*<div class="col-xs-3">*@
+    @*</div>*@
+    @*<div class="col-md-12 col-xs-9">*@
+    @*<div class="panel panel-primary">*@
+    @*<div class="panel-heading">*@
+    @*<h3 class= "panel-title">รายการจัดเวรดูเเลศูนย์</h3>*@
+    @*</div>*@
+    @*<div class="panel-body">*@
+    @*<div class="text-right">*@
+    @*<a href="/saveSchedule" class="btn btn-success">ยืนยันการจัดเวร</a>*@
+    @*</div>*@
+    @*@if(flash.containsKey("nodata")) {*@
+    @*<div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("nodata")</div>*@
+    @*}*@
+
+    @*<table class="table table-striped custab">*@
+    @*<tr>*@
+    @*<td>ลำดับที่</td>*@
+    @*<td>ระหว่างวันที่</td>*@
+    @*<td>ถึงวันที่</td>*@
+    @*<td>เวลาเข้า</td>*@
+    @*<td>เวลาออก</td>*@
+    @*<td>ชื่อสมาชิก</td>*@
+    @*<td>ลบ</td>*@
+    @*</tr>*@
+    @*@if(scheduleList1 == null) {*@
+        @*<tr>*@
+        @*<td></td>*@
+        @*<td></td>*@
+        @*<td></td>*@
+        @*<td></td>*@
+        @*<td></td>*@
+        @*<td></td>*@
+        @*<td></td>*@
+
+        @*</tr>*@
+        @*}else{*@
+        @*@for(data <- scheduleList1) {*@
+@*<tr>*@
+@*<td>@no</td>*@
+@*<td>@data.getSch_Date</td>*@
+@*<td>@data.getSch_Dates</td>*@
+@*<td>@data.getSch_Timein</td>*@
+@*<td>@data.getSch_Timeout</td>*@
+@*<td>@data.getUser.getMem_name</td>*@
+@*<td class="text-center"><a href="/deleteCusSchedule/@data.getListSch_Id" class="oi oi-trash" onclick="return confirm('คุณต้องการที่จะลบข้อมูลศูนย์นี้ใข่หรือไม่ ? ')"><i class="material-icons " style="color: #9f191f">*@
+@*delete*@
+@*</i></a></td>*@
+@*</tr>*@
+@* @(no = no + 1)*@
+@*}*@
+@*}*@
+@*</table>*@
+@*</div>*@
+@*</div>*@
+@*</div>*@
+@*</div>*@
+@*</div>*@
+
+

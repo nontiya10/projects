@@ -1,0 +1,47 @@
+@(mybook: Form[Book],cusList : List[Customer])
+@import java.util.Date; var date = new Date();
+@import java.text.SimpleDateFormat; var formatdate = new SimpleDateFormat("dd-MM-yyyy");
+@import java.text.StringCharacterIterator; var testdate = formatdate.format(date);
+
+@import helper._;
+
+    <div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+        <div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <h3 class="panel-title"><a href="#">กรุณากรอกข้อมูลจองคิวศึกษาดูงาน</a></h3>
+    </div>
+    <div class="panel-body">
+
+        @if(flash.containsKey("nodata")){
+            <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("nodata")</div>
+        }
+        @if(flash.containsKey("error")){
+            <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("error")</div>
+        }
+    @helper.form(action = routes.Application.insertBook(), 'class -> "form-contorl", 'enctype -> "multipart/form-data") {
+        <div class="row">
+            <div class="col-md-12">@select(mybook("customer.cus_Id"),
+            options = cusList.map(groupCourseList => groupCourseList.getCus_Id -> groupCourseList.getCus_Name),
+            '_label -> "รายชื่อลูกค้า", 'class -> "form-control")</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">@inputText(mybook("book_date"), '_label -> "วันที่จอง", 'size -> "50", 'minlength -> "10", 'maxlength -> "20", 'requitred -> "requitred", 'class -> "form-control",'readonly->"readonly", 'placeholder -> testdate )</div>
+            <div class="col-md-6">@inputText(mybook("book_dates"), '_label -> "วันที่เข้าดูงาน", 'type -> "date", 'size -> "50", 'maxlength -> "40", 'requitred -> "requitred", 'class -> "form-control", 'placeholder -> "กรุณากรอกข้อมูลวันที่เข้ามาดูงาน")</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">@inputRadioGroup(mybook("book_time"),options =Seq ("1"->"ช่วงเช้า","2"->"ช่วงบ่าย","3"->"เต็มวัน"),'_label -> "ช่วงเวลาเข้าดูงาน")</div>
+            <div class="col-md-6">@inputText(mybook("Book_Amount"), '_label -> "จำนวนคนเข้าดูงาน", 'type -> "number", 'size -> "50", 'maxlength -> "100", 'requitred -> "requitred", 'class -> "form-control", 'placeholder -> "กรุณากรอกข้อมูลจำนวนคนเข้าดูงาน")</div>
+        </div>
+        <input type="submit" value="บันทึก" class="btn btn-success" onclick="return confirm('บันทึกข้อมูล')">
+        <a href="/formAddBook " class="btn btn-danger">ยกเลิก</a>
+    }
+    </div>
+    </div>
+    </div>
+        </div>
+</div>

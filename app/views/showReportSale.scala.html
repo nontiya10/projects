@@ -1,0 +1,36 @@
+@(salelist: List[Sale])
+@import helper._;
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">รายงานการขาย</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped custab">
+                        <div class="text-center">
+                            <tr>
+                                <th>รหัสการขาย</th>
+                                <th>วันที่</th>
+                                <th>พิมพ์</th>
+                            </tr>
+                        </div>
+                        @for(datauser <- salelist) {
+                            <tr>
+                                <td>@datauser.getSale_Id</td>
+                                <td>@datauser.getSale_date</td>
+                                <td class="text-center"><a href=" /reportsale/@datauser.getSale_Id" target="_blank"><i class="material-icons" style="color : darkblue">event_note
+                                </i>
+                                </a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

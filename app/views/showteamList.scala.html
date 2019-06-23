@@ -1,0 +1,44 @@
+@(teamList:List[TeamList])
+@if(flash.containsKey("error")){
+    <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("error")</div>
+}
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">รายการจัดทีมวิทยากร
+                    </a></h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+
+                        <table class="table table-striped custab">
+                            <div class="text-center">
+                                <tr>
+
+                                    <th>ชื่อ-นามสกุล</th>
+                                    <th>เบอร์โทรศัพท์</th>
+                                    <th>อีเมล</th>
+                                    <th>ตำแหน่ง</th>
+
+                                </tr>
+                            </div>
+                            @for(datauser <-teamList ) {
+                                <tr>
+                                    <td>@datauser.getUser.getMem_name</td>
+                                    <td>@datauser.getUser.getMem_tel</td>
+                                    <td>@datauser.getUser.getMem_email</td>
+                                    <td>@datauser.getTeamList_Posit</td>
+
+                                    }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

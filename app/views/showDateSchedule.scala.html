@@ -1,0 +1,36 @@
+@(userList : List[ScheduleL])
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">ตารางการเข้าเวร </h3>
+                </div>
+                <div class="panel-body">
+                        <table class="table table-striped custab">
+                            <tr>
+
+                                <td>รหัสสมาชิก</td>
+                                <td>ชื่อ-นามสกุล</td>
+                                <td>เบอร์โทร</td>
+                                <td>อีเมลล์</td>
+
+                            </tr>
+                            @for(data <- userList){
+                                    <tr>
+                                        <td>@data.getUser.getId</td>
+                                        <td>@data.getUser.getMem_name</td>
+                                        <td>@data.getUser.getMem_tel</td>
+                                        <td>@data.getUser.getMem_email</td>
+                                    </tr>
+                    }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

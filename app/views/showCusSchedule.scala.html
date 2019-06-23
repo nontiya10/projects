@@ -1,0 +1,49 @@
+@(scheduleList1:List[ScheduleList])
+@import helper._;
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">ตารางจัดเวรดูเเลศูนย์</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="/searchDate" method="post">
+                    </form>
+
+                    @if(flash.containsKey("error")){
+                        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("error")</div>
+                    }
+                    @if(flash.containsKey("nodata")){
+                        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("nodata")</div>
+                    }
+                        <table class="table table-striped custab">
+                            <div class="text-center">
+                                <tr>
+                                    <th>รหัสตารางเวร</th>
+                                    <th>วันที่เริ่ม</th>
+                                    <th>วันที่ออก</th>
+                                    <th>เวลาเข้า</th>
+                                    <th>เวลาออก</th>
+                                    <th>รายชื่อ</th>
+                                </tr>
+                            </div>
+                            @for(datauser <-scheduleList1 ) {
+                                <tr>
+                                    <td>@datauser.getListSch_Id</td>
+                                    <td>@datauser.getSch_Date</td>
+                                    <td>@datauser.getSch_Dates</td>
+                                    <td>@datauser.getSch_Timein</td>
+                                    <td>@datauser.getSch_Timeout</td>
+                                    <td class="text-center"><a href="/detailSch/@datauser.getListSch_Id"><i class="material-icons" style="color:darkblue">event_note
+                                    </i></a></td>
+                                    }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

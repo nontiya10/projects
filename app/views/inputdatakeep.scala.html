@@ -1,0 +1,134 @@
+@(myproduct: List[Product],keepadd : List[KeepAdd],product : Product)
+@import java.util.Date; var date = new Date();
+@import java.text.SimpleDateFormat; var formatdate = new SimpleDateFormat("dd-MM-yyyy");
+@import java.text.StringCharacterIterator; var testdate = formatdate.format(date);
+@import java.lang.String; var sss = "/addkeep";
+@import java.math.BigInteger; var cat=0; var no = 1;
+
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">เก็บผลผลิต</a>
+                        /เพิ่มข้อมูลผลผลิต</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form action="/loadkeep" method="post">
+                                    <select class="form-control" name="product" id="list" onchange="this.form.submit()">
+                                        @if(product == null) {
+                                            <option value="0">----กรุณาเลือกสินค้า----</option>
+                                            @for(us <- myproduct) {
+                                                <option value="@us.getPro_Id"> @us.getPro_Name</option>
+                                                }
+                                        } else {
+                                                @for(us <- myproduct) {
+                                                    @if(product.getPro_Id == us.getPro_Id) {
+                                                        <option value="@us.getPro_Id" selected> @us.getPro_Name</option>
+                                                    }else{
+                                                        <option value="@us.getPro_Id"> @us.getPro_Name</option>
+                                                    }
+                                                }
+
+                                            }
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+
+                        <form action="/addkeep" method="post">
+                            @if(product!= null){
+                                <input type="hidden" name="product" value="@product.getPro_Id">
+                            }
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <lable name="Sch_Timein">จำนวน</lable> <br>
+                                <input type="text" value="" name="amount" class="form-control"  required="required">
+                            </div>
+                                <div class="col-md-6"></div>
+                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <lable name="Pro_Unit">หน่วยนับ</lable> <br>
+                                    @if(product == null) {
+                                        <input type="text" value="" name="name" class="form-control" readonly="readonly">
+                                    } else {
+                                        <input type="text" value="@product.getPro_Unit" name="unit" class="form-control" readonly="readonly">
+                                        }
+                                </div>
+                            </div><br>
+                        <input type="submit" value="บันทึก" class="btn btn-success">
+                        <a href="/formInsertKeep " class="btn btn-danger">ยกเลิก</a>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+</div>
+
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class=  "panel-title">รายการเก็บผลผลิต</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="text-right">
+                        <a href="/saveKeep" class="btn btn-success">ยืนยัน</a>
+                    </div>
+                    @if(flash.containsKey("nodata")){
+                        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("nodata")</div>
+                    }
+
+                    <table class="table table-striped custab">
+                        <tr>
+                            <td>ลำดับที่</td>
+                            <td>ชื่อผลผลิต</td>
+                            <td>จำนวน</td>
+                            <td>หน่วยนับ</td>
+                            <td>ลบ</td>
+                        </tr>
+                        @if(keepadd == null){
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
+                            </tr>
+                        }else{
+                            @for(data <- keepadd){
+                                <tr>
+                                    <td>@no</td>
+                                    <td>@data.getProduct.getPro_Name</td>
+                                    <td>@data.getAmount</td>
+                                    <td>@data.getProduct.getPro_Unit</td>
+                                    <td class="text-center"><a href="/deleteKeepAdd/@data.getKL_Id" class="oi oi-trash" onclick="return confirm('คุณต้องการที่จะลบข้อมูลสินค้าใช่หรือไม่ ? ')"><i class="material-icons " style="color: #9f191f">
+    delete
+                                    </i></a></td>
+                                </tr>
+                                @(no=no+1)
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,53 @@
+@(productList : List[Product])
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                        /ข้อมูลผลผลิต</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="text-right">
+                            <a href="/formAddProduct" class="btn btn-primary" >เพิ่มข้อมูล</a>
+                        </div>
+                        <table class="table table-striped custab">
+                            <div class="text-center">
+                                <tr>
+                                    <th>รหัสสินค้า</th>
+                                    <th>ชื่อสินค้า</th>
+                                    <th>จำนวน</th>
+                                    <th>หน่วยนับ</th>
+                                    <th>ราคาขาย</th>
+                                    <th>เเก้ไข</th>
+                                    <th>ลบ</th>
+
+
+                                </tr>
+                            </div>
+                                @for(dataProduct <- productList) {
+                                    <tr>
+                                        <td>@dataProduct.getPro_Id</td>
+                                        <td>@dataProduct.getPro_Name</td>
+                                        <td>@dataProduct.getPro_Amount</td>
+                                        <td>@dataProduct.getPro_Unit</td>
+                                        <td>@dataProduct.getPro_total</td>
+                                        <td class="text-center"><a href="/editProduct/@dataProduct.getPro_Id"><i class="material-icons" style="color:darkblue" onclick="return confirm('ต้องการแก้ไขข้อมูลสินค้าใช่หรือไม่')">
+create
+                                        </i></a></td>
+                                        <td class="text-center"><a href="/deleteProduct/@dataProduct.getPro_Id" class="oi oi-trash" onclick="return confirm('คุณต้องการที่จะลบข้อมูลศูนย์นี้ใข่หรือไม่ ? ')"><i class="material-icons " style="color: #9f191f">
+    delete
+                                        </i></a></td>
+
+                                    </tr>
+                                }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+@(bookList : List[Book])
+<div class="panel-body">
+    @if(flash.containsKey("error")){
+        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("error")</div>
+    }
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลการจองคิวเข้ามาศึกษาดูงาน</a></h3>
+
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+
+                        </div>
+                        <table class="table table-striped custab">
+                            <div>
+                                <tr style="font-size: 16px">
+                                    <th>รหัสการจอง</th>
+                                    <th>ชื่อลูกค้า</th>
+                                    <th>วันที่จอง</th>
+                                    <th>วันที่มาดูงาน</th>
+                                    <th>เวลา</th>
+                                    <th>จำนวน/คน</th>
+                                    <th>ชื่อสมาชิก</th>
+                                    <th>สถานะการจอง</th>
+                                    <th>ยืนยัน</th>
+                                    <th>ยกเลิก</th>
+                                </tr>
+                         </div>
+                            @for(databook <- bookList ) {
+                                <tr>
+                                    <td>@databook.getBook_id</td>
+                                    <td>@databook.getCustomer.getCus_Name</td>
+                                    <td>@databook.getBook_date</td>
+                                    <td>@databook.getBook_dates</td>
+                                    <td>@databook.getBook_time</td>
+                                    <td>@databook.getBook_Amount</td>
+                                    <td>@databook.getUser.getMem_name</td>
+                                    @if(databook.getBook_Status == null) {
+                                        <td style="color: red ">รอการยืนยัน</td>
+                                    }else{
+                                        <td style="color: green">ยืนยันเเล้ว</td>
+                                    }
+                                    @if(databook.getBook_Status == "2"){
+                                        <td>.....</td>
+                                    }else{
+                                        <td class="text-center"><a href="/editBook/@databook.getBook_id" class="btn btn-success" onclick="return confirm('ยืนยันข้อมูลการจองใช่หรือไม่')">ยืนยัน</a></td>
+                                    }
+
+                                    @if(databook.getBook_Status == null) {
+                                        <td class="text-center"><a href="/deletebook/@databook.getBook_id" class="material-icons " onclick="return confirm('คุณต้องการที่จะลบข้อมูลการจองคิวเข้ามาศึกษาดูงานนี้ใข่หรือไม่ ? ')"><i class="material-icons "style="color: #c12e2a">
+                                    }else{
+                                        <td class="text-center"><a class="oi oi-trash"><i class="material-icons "style="color: #555250">
+                                    }
+
+    delete
+                                    </i></a></td>
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

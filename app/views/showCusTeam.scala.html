@@ -1,0 +1,48 @@
+@(teamList:List[Team])
+@import helper._;
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">ตารางจัดทีมวิทยากร</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="/dataTeam" method="post">
+                    </form>
+
+                    @if(flash.containsKey("error")){
+                        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("error")</div>
+                    }
+                    @if(flash.containsKey("nodata")){
+                        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("nodata")</div>
+                    }
+                    <table class="table table-striped custab">
+                        <div class="text-center">
+                            <tr>
+
+                                <th>รหัสทีม</th>
+                                <th>วันที่เข้าดูงาน</th>
+                                <th>เวลาเข้าดูงาน</th>
+                                <th>จำนวน/คน</th>
+                                <th>รายชื่อ</th>
+                            </tr>
+                        </div>
+                        @for(dataTeam <-teamList ) {
+                            <tr>
+
+                                <td>@dataTeam.getId</td>
+                                <td>@dataTeam.getDate</td>
+                                <td>@dataTeam.getTime</td>
+                                <td>@dataTeam.getBook.getBook_Amount</td>
+                                <td class="text-center"><a href="/detailTeam/@dataTeam"><i class="material-icons" style="color:darkblue">event_note
+                                </i></a></td>
+                                }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

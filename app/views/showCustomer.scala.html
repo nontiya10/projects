@@ -1,0 +1,57 @@
+@(customerList : List[Customer])
+<center>
+    @if(flash.containsKey("error")){
+        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("error")</div>
+    }
+</center>
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                        /ข้อมูลลูกค้า</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="text-right">
+                            <a href="/formAddCustomer" class="btn btn-primary" >เพิ่มข้อมูล</a>
+                        </div>
+                        <table class="table table-striped custab">
+                            <div class="text-center">
+                                <tr>
+                                    <th>รหัสลูกค้า</th>
+                                    <th>ชื่อลูกค้า</th>
+                                    <th>เบอร์โทรศัพท์</th>
+                                    <th>ที่อยู่</th>
+                                    <th>อีเมล</th>
+                                    <th>เเก้ไข</th>
+                                    <th>ลบ</th>
+
+                                </tr>
+                            </div>
+                                @for(dataCustomer <- customerList) {
+                                    <tr>
+                                        <td>@dataCustomer.getCus_Id</td>
+                                        <td>@dataCustomer.getCus_Name</td>
+                                        <td>@dataCustomer.getCus_Tel</td>
+                                        <td>@dataCustomer.getCus_Address</td>
+                                        <td>@dataCustomer.getCus_Email</td>
+                                        <td class="text-center"><a href="/editCustomer/@dataCustomer.getCus_Id"><i class="material-icons" style="color:darkblue" onclick="return confirm('ต้องการแก้ไขข้อมูลลูกค้าใช่หรือไม่')">
+create
+                                        </i></a></td>
+                                        <td class="text-center"><a href="/deleteCustomer/@dataCustomer.getCus_Id" class="oi oi-trash" onclick="return confirm('คุณต้องการที่จะลบข้อมูลศูนย์นี้ใข่หรือไม่ ? ')"><i class="material-icons " style="color: #9f191f">
+    delete
+                                        </i></a></td>
+
+                                    </tr>
+                                }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

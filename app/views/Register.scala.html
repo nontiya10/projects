@@ -1,0 +1,111 @@
+<html>
+<head>
+<title style=" font-family: 'Bai Jamjuree', sans-serif;">ระบบบริหารจัดการศูนย์การเรียนรู้เศรษฐกิจพอเพียง</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/stylesheets/bootstrap3/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/stylesheets/main.css">
+<link rel="stylesheet" href="assets/stylesheets/util.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css"></style>
+</head>
+    @*////////////////////////////////////////*@
+    <link href ="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">
+    <body style=" font-family: 'Bai Jamjuree', sans-serif;">
+        <div class="container-fluid">
+            <div class="limiter" >
+                <div class="container-login100">
+                    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+                        <form class="login100-form validate-form" action="/userlogin" method="post">
+                            <span class="login100-form-title p-b-33">
+                                <img src="assets/images/LOGO1.png" width="200" height="200"><BR>
+                                <h4 style=" font-family: 'Bai Jamjuree', sans-serif;">ระบบบริหารจัดการศูนย์การเรียนรู้</h4><h4  style=" font-family: 'Bai Jamjuree', sans-serif;">เศรษฐกิจพอเพียง</h4>
+                            </span>
+                            @if(flash.containsKey("error")){
+                                <div class="alert alert-danger"><strong>ผิดพลาด </strong>@flash.get("error")</div>
+                            }
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputdefault">ชื่อ นามสกุล: </label>
+                                        <input class="form-control" id="inputdefault" type="text" placeholder="กรุณากรอกข้อมูลชื่อ" name="Mem_name" required="required">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputdefault">รหัสประจำตัวประชาชน :</label>
+                                        <input class="form-control" id="inputdefault" type="number" placeholder="กรุณากรอกข้อมูลรหัสประจำตัวประชาชน" name="Mem_id" required="required"  maxlength="13"
+                                        oninput="this.value.length<this.maxLength?this.min=Math.pow(10, this.value.length):this.min=0"
+                                        onkeypress="return (this.value.length>=this.maxLength)?false:true"
+                                        autocomplete="off" value="" required    placeholder="0123456789">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputdefault">เบอร์โทรศัพท์ :</label>
+                                        <input class="form-control" id="inputdefault" type="number" placeholder="กรุณากรอกข้อมูลเบอร์โทรศัพท์" name="Mem_tel" required="required" maxlength="10"
+                                        oninput="this.value.length<this.maxLength?this.min=Math.pow(10, this.value.length):this.min=0"
+                                        onkeypress="return (this.value.length>=this.maxLength)?false:true"
+                                        autocomplete="off" value="" required    placeholder="0123456789">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputdefault">อีเมล :</label>
+                                        <input class="form-control" id="inputdefault" type="text" placeholder="กรุณากรอกข้อมูล E-Mail" name="Mem_email" required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="comment">ที่อยู่:</label>
+                                        <textarea class="form-control" rows="5" id="comment"placeholder="กรุณากรอกข้อมูลที่อยู่" name="Mem_add" required="required"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputdefault">Username :</label>
+                                        <input class="form-control" id="inputdefault" type="text" placeholder="Username" name="username" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputdefault">Password :</label>
+                                        <input class="form-control" id="inputdefault" type="Password" placeholder="Password" name="password" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputdefault">Re-Password :</label>
+                                        <input class="form-control" id="inputdefault" type="Password" placeholder="Password" name="repeat" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-login100-form-btn m-t-20">
+                                <input type="submit" class="btn btn-primary buttonsnew" value="ลงทะเบียน">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

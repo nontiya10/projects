@@ -1,0 +1,101 @@
+@(myteamlist: List[Team], team: Team, total: Int,price:String)
+@import java.math.BigInteger; var cat = 0;
+@import java.lang.String; var sss = "";
+
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ชำระเงิน</a>
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form action="/loadDatepayment" method="post">
+                                    <select class="form-control" name="team" id="list" onchange="this.form.submit()">
+                                    @if(team == null) {
+                                        @sss=
+                                        <option value="0">----รหัสการจอง----</option>
+                                        @for(us <- myteamlist) {
+                                            <option value="@us.getId"> @us.getBook.getBook_id</option>
+                                        }
+                                    } else {
+                                        @for(us <- myteamlist) {
+                                            @if(team.getBook.getBook_id == us.getBook.getBook_id) {
+                                                <option value="@us.getId" selected> @us.getBook.getBook_id</option>
+                                            } else {
+                                                <option value="@us.getId"> @us.getBook.getBook_id</option>
+                                            }
+                                        }
+
+
+                                    }
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+
+                        <form action="/savePayment" method="post">
+                            @if(team != null) {
+                                <input type="hidden" value="@team.getId" name="team">
+                            }
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <lable name="name">ชื่อลูกค้า</lable> <br>
+                                    @if(team == null) {
+                                        <input type="text" value="" name="name" class="form-control" readonly="readonly">
+                                    } else {
+                                        <input type="text" value="@team.getBook.getCustomer.getCus_Name" name="amount" class="form-control" readonly="readonly">
+                                        }
+                                </div>
+                              </div>
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <lable name="amount">จำนวน/คน</lable> <br>
+                                    @if(team == null) {
+                                        <input type="text" value="" name="amount" class="form-control" readonly="readonly">
+                                    } else {
+                                        <input type="text" value="@team.getBook.getBook_Amount" name="amount" class="form-control" readonly="readonly">
+                                        }
+
+                                </div>
+
+                                <div class="col-md-6"></div>
+                            </div>
+                            @if(team != null) {
+                                <input type="hidden" value="@team.getId" name="team">
+                            }
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <lable name="Cen_Price">ราคา/คน</lable> <br>
+                                    <input type="text" value="@price" name="price" class="form-control"  readonly="readonly">
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <lable name="Pay_Total">ราคารวม</lable> <br>
+                                    <input type="text" value="@total" name="total" class="form-control" readonly="readonly">
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
+                            <br>
+                            <br>
+                            <input type="submit" value="บันทึก" class="btn btn-success" onclick="return confirm('บันทึกข้อมูล')">
+                            <a href="/formInsertpay " class="btn btn-danger">ยกเลิก</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

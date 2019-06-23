@@ -1,0 +1,42 @@
+@(KeepList1:List[Keep])
+@import helper._;
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">รายการเก็บผลผลิต</h3>
+                </div>
+                <div class="panel-body">
+
+                    @if(flash.containsKey("error")){
+                        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("error")</div>
+                    }
+                    @if(flash.containsKey("nodata")){
+                        <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("nodata")</div>
+                    }
+                    <table class="table table-striped custab">
+                        <div class="text-center">
+                            <tr>
+                                <th>รหัสรายการ</th>
+                                <th>วันที่เก็บ</th>
+                                <th>ชื่อสมาชิก</th>
+                                <th>ข้อมูลการเก็บผลผลิต</th>
+                            </tr>
+                        </div>
+                        @for(datauser <-KeepList1 ) {
+                            <tr>
+                                <td>@datauser.getKeep_Id</td>
+                                <td>@datauser.getKeep_Date</td>
+                                <td>@datauser.getUser.getMem_name</td>
+                                <td class="text-center"><a href="/detailkeep/@datauser.getKeep_Id"><i class="material-icons" style="color:darkblue">event_note
+                                </i></a></td>
+                                }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

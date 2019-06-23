@@ -1,0 +1,72 @@
+@(myScheduleList : Form[ScheduleList],myuserlist :List[User],scheduleList1 : List[CusSchedule],datauser : User)
+    @import helper._;
+    <div class=" panel-default">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                            /เพิ่มข้อมูลเวรดูเเลศูนย์</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                        @helper.form(action = routes.Application.Adduser(), 'class -> "form-contorl",'enctype -> "multipart/form-data"){
+                            <div class="row">
+
+                                <div class="col-md-12">@inputText(myScheduleList ("Sch_Date"),'_label ->"วันที่",'size -> "50", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control")</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">@inputText(myScheduleList ("Sch_Timein"),'_label ->"เวลาเข้า ",'size -> "50",'type -> "time", 'maxlength ->"100", 'requitred -> "requitred",'class ->"form-control")</div>
+                                <div class="col-md-6">@inputText(myScheduleList ("Sch_Timeout"),'_label ->"เวลาออก",'size -> "50",'type -> "time", 'maxlength ->"40", 'requitred -> "requitred",'class->"form-control")</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">@select(myScheduleList("user.username"),
+                                    options = myuserlist.map(groupCourseList => groupCourseList.getUsername -> groupCourseList.getMem_name),
+                                    '_label -> "ชื่อสมาชิก", 'class -> "form-control")</div>
+
+                                </div>
+                            </div>
+                            <input type="submit" value="บันทึก" class="btn btn-success" onclick="return confirm('บันทึกข้อมูล')">
+                            <a href="/product " class="btn btn-danger">ยกเลิก</a>
+                        }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <div class=" panel-default">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">รายการจัดเวรดูเเลศูนย์</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a href="/clear " class="btn btn-danger"></a>
+                        <table class="table table-striped custab">
+                            <tr>
+                                <td>รหัส</td>
+                                <td>วันที่</td>
+                                <td>เข้า</td>
+                                <td>ออก</td>
+                                <td>ชื่อ</td>
+                            </tr>
+                            @for(data <- scheduleList1){
+                                <tr>
+                                    <td>@data.getListSch_Id</td>
+                                    <td>@data.getSch_Date</td>
+                                    <td>@data.getSch_Timein</td>
+                                    <td>@data.getSch_Timeout</td>
+                                    <td>@datauser.getMem_name</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

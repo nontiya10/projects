@@ -1,0 +1,92 @@
+@(center: List[Center],s : Team,teamList: List[TeamList])
+@import java.util.Date; var date = new Date();
+@import java.text.SimpleDateFormat; var formatdate = new SimpleDateFormat("dd-MM-yyyy");
+@import java.text.StringCharacterIterator; var testdate = formatdate.format(date);
+@import java.math.BigInteger; var no = 1;
+<html>
+    <head>
+        <title>report</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="../assets/stylesheets/print.css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="container">
+            <div id="con" >
+                <div class=" panel-default"><br>
+                    <div class="row">
+                        <div class="col-xs-3">
+                        </div>
+                        <div class="col-md-12 col-xs-9"><p align="center">
+                            @for(center <- center) {
+
+                                <td><img src="/assets/images/center/@center.getCen_Logo" width=150px"></td> <br> <br>
+                                <p style="font-size:30px" align="center">@center.getCen_Name</p>
+                                <p style="font-size:18px" align="center">กศน.ตำบลหินกอง อ.สุวรรณภูมิ จ.ร้อยเอ็ด 45130</p>
+                                <p style="font-size:15px;" align="center">โทร : @center.getCen_Tel
+                                    ที่อยู่ : @center.getCen_Address
+                                    อีเมล : @center.getCen_Email</p>
+
+                            }
+                        </div>
+                    </div><br><br><br>
+                    <div class="row">
+                        <div class="col-md-12">
+                           <b>รหัสการจัดทีม : @s.getId</b><br>
+                            @*<b>วันที่จัดทีม : @s.getDate</b><br>*@
+                        </div>
+
+
+                    <div class="text-right"><b>ณ วันที่ : @testdate</b></div>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <table class="table table-striped custab">
+                                <tr>
+                                    <th>ลำดับที่</th>
+                                    <th>ชื่อ</th>
+                                    <th>ตำแหน่ง</th>
+
+
+                                </tr>
+                                @for(data <- teamList){
+                                    <tr>
+                                        <td>@no</td>
+                                        <td>@data.getUser.getMem_name</td>
+                                        <td>@data.getTeamList_Posit</td>
+
+                                    @(no=no+1)
+                                }
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <p class="text-right" ><button class="btn btn-primary" onclick="PrintDiv()" >พิมพ์เอกสาร</button> </p>
+        </div>
+        <script type="text/javascript">
+function PrintDiv() {
+        var divToPrint = document.getElementById('con'); // เลือก div id ที่เราต้องการพิมพ์
+	var html =  '<html>'+ //
+				'<head>'+
+					'<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">'+
+					'<link rel="stylesheet" href="../assets/stylesheets/print.css">'+
+					'<link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">'+
+				'</head>'+
+					'<body onload="window.print(); window.close();">' + divToPrint.innerHTML + '</body>'+
+				'</html>';
+
+	var popupWin = window.open();
+	popupWin.document.open();
+	popupWin.document.write(html); //โหลด print.css ให้ทำงานก่อนสั่งพิมพ์
+	popupWin.document.close();
+}
+</script>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+@(workList : List[SaveWork])
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">บันทึกการเข้าออกงาน</h3>
+                </div>
+                 <div class="panel-body">
+                <div class="col-md-12">
+                    <center>
+                        @if(flash.containsKey("ErrorTimeIn")){
+                            <br> <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("ErrorTimeIn")</div>
+                        }
+                    </center>
+
+                    <div class="text-right">
+                        @if(session.get("timein") != null){
+
+                        }else {
+                            <a href="/timeInWork" class="btn btn-warning" >ลงเวลาเข้างาน</a>
+                        }
+                    </div>
+                    @if(flash.containsKey("ErrorTime")){
+                        <br> <div class="alert alert-danger"><strong>ผิดพลาด! </strong>@flash.get("ErrorTime")</div>
+                    }
+                    <table class="table table-striped custab">
+                        <div class="text-center">
+                            <tr>
+                                <th>รหัสบันทึก</th>
+                                <th>ชื่อสมาชิก</th>
+                                <th>วันที่บันทึก</th>
+                                <th>เวลาเข้างาน</th>
+                                <th>เวลาออกงาน</th>
+
+                            </tr>
+                        </div>
+                        @for(datawork <-workList ) {
+                                <tr>
+                                    <td>@datawork.getWork_id</td>
+                                    <td>@datawork.getUser.getMem_name</td>
+                                    <td>@datawork.getWork_date</td>
+                                    <td>@datawork.getWork_Timein</td>
+                                    @if(datawork.getWork_Timeout == null){
+                                        <td><a href="/timeOutWirk/@datawork.getWork_id" class="btn btn-danger" onclick="return confirm('คุณยืนยันที่จะออกงานใช่หรือไม่?')" >ออกงาน</a></td>
+                                    }else{
+                                        <td>@datawork.getWork_Timeout()</td>
+                                    }
+                                </tr>
+                            }
+                      </table>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

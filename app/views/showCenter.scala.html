@@ -1,0 +1,55 @@
+@(centerList : List[Center])
+<div class=" panel-default">
+    <div class="row">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-md-12 col-xs-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="#">ข้อมูลพื้นฐาน</a>
+                        /ข้อมูลศูนย์การเรียนรู้เศรษฐกิจพอเพียง</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="text-right">
+                            @if(centerList.size != 0){
+
+                            }else{
+                                <a href="/formAddCenter" class="btn btn-primary" >เพิ่มข้อมูล</a>
+                            }
+
+                        </div>
+                        <table class="table table-striped custab">
+                            <div class="text-center">
+                                <tr>
+                                    <th>ชื่อศูนย์ฯ</th>
+                                    <th>เบอร์โทรศัพท์</th>
+                                    <th>ที่อยู่</th>
+                                    <th>อีเมล</th>
+                                    <th>ราคาดูงาน/คน</th>
+                                    <th>โลโก้</th>
+                                    <th>แก้ไข</th>
+
+                                </tr>
+                            </div>
+                            @for(dataCenter <- centerList) {
+                                <tr>
+                                    <td>@dataCenter.getCen_Name</td>
+                                    <td>@dataCenter.getCen_Tel</td>
+                                    <td>@dataCenter.getCen_Address</td>
+                                    <td>@dataCenter.getCen_Email</td>
+                                    <td>@dataCenter.getCen_Price</td>
+                                    <td><img src="assets/images/center/@dataCenter.getCen_Logo" width="50px" height="50px"></td>
+                                    <td class="text-center"><a href="/editCenter/@dataCenter.getCen_Id"><i class="material-icons" style="color:darkblue" onclick="return confirm('ต้องการแก้ไขข้อมูลศูนย์ใช่หรือไม่')">
+create
+                                    </i></a></td>
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
